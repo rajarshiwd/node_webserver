@@ -16,8 +16,6 @@ hbs.registerHelper('currentYear',()=>{
   return new Date().getFullYear();
 })
 
-// middleware to use files in other folders
-app.use(express.static(__dirname +'/public'));
 
 // middleware to print the log
 app.use((req,res,next) =>{
@@ -32,10 +30,20 @@ app.use((req,res,next) =>{
   });
   next();
 });
-// middleware
-app.use((req,res)=>{
-  res.render('maintainence.hbs')
+// // middleware
+// app.use((req,res)=>{
+//   res.render('maintainence.hbs')
+// })
+
+// middleware to use files in other folders
+app.use(express.static(__dirname +'/public'));
+
+app.get('/projects',(req,res)=>{
+  res.render('projects.hbs',{
+    page:'Projects page'
+  })
 })
+
 
 app.get('/',(request,response)=>{
 response.render('home.hbs',{
@@ -43,6 +51,7 @@ response.render('home.hbs',{
 
 });
 });
+
 app.get('/about',(req,res)=>{
   res.render('about.hbs',{
     page:'About Page',
