@@ -4,6 +4,7 @@ const express = require ('express');
 const app = express();
 const hbs = require('hbs');
 var fs = require('fs');
+const port = process.env.PORT || 4200 ;
 
 app.set('view engine','hbs');
 
@@ -48,4 +49,6 @@ app.get('/about',(req,res)=>{
     date: new Date().getFullYear()
   })
 })
-app.listen(4200);
+app.listen(port,()=>{
+  console.log(`The localhost is listening at ${port}`);
+});
